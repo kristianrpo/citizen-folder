@@ -1,42 +1,81 @@
 ---
 name: "NFR"
-about: "Definir un requisito no funcional medible"
-title: "NFR-<ID>: <nombre corto>"
-labels: ["type:NFR","priority:P?","tier:T?","area:?"]
+about: "Define a measurable Non-Functional Requirement (NFR)"
+title: "NFR-<ID>: <Short descriptive name>"
+labels: ["type:NFR","priority:P?","tier:?","area:?"]
 assignees: []
 ---
 
-## Descripción breve
-<!-- ¿Qué atributo de calidad cubre y por qué importa para negocio/usuario? -->
+## Short Description
+<!-- Briefly describe the intent of this NFR and why it is important (e.g., scalability, reliability, performance, security). -->
 
-## Alcance (servicios / rutas / contexto)
-- Servicios: <!-- e.g., auth-iam, dir-interop, doc-meta, doc-content -->
-- Entornos: <!-- dev/stg/prod -->
-- Horario aplicable: <!-- 24x7 / horario pico -->
+---
 
-## SLI (qué medimos)
-<!-- Latencia p95/p99, tasa de error, disponibilidad, throughput, etc. -->
+## Scope (services / context / duration)
+- **Scope:** <!-- e.g., Entire system / Specific microservice / API endpoint -->
+- **Time horizon:** <!-- e.g., 6 months / 12–18 months -->
+- **Environments:** <!-- dev / staging / prod -->
+- **Applicable schedule:** <!-- 24x7 / business hours / peak periods -->
 
-## SLO (objetivo/umbral)
-<!-- p.ej., p95 < 800 ms; disponibilidad 99.95% mensual -->
+---
 
-## Medición / Instrumentación
-- Cómo: <!-- APM, OpenTelemetry, synthetic checks, logs -->
-- Dónde: <!-- dashboard, alerta, panel -->
-- Frecuencia: <!-- continua / cada deploy / mensual -->
+## SLI (Service Level Indicators)
+<!-- List what metrics will be measured to validate this NFR. Examples: -->
+<!-- - DAU projections -->
+<!-- - QPS per critical path -->
+<!-- - Latency p95/p99 -->
+<!-- - Error rate -->
+<!-- - Concurrency ratio -->
+<!-- - Storage growth -->
+<!-- - Throughput -->
 
-## Datos de referencia / hipótesis de carga
-<!-- DAU, QPS esperado, tamaño de payload, concurrencia, picos -->
+---
 
-## Criterios de aceptación (DoR/DoD)
-- [ ] Dashboard con SLI visible en tiempo real
-- [ ] Alarmas configuradas (umbral + canal)
-- [ ] Pruebas (carga/sintéticas) demuestran el SLO
-- [ ] Documentación/Runbook actualizados
-- [ ] No rompe compatibilidad (si aplica)
+## SLO (Service Level Objectives)
+<!-- Define the quantitative or qualitative goals/thresholds for the SLIs. Examples: -->
+<!-- - p95 < 800 ms -->
+<!-- - 99.95% availability monthly -->
+<!-- - Scaling plan reviewed quarterly -->
+<!-- - Error rate < 0.1% -->
+<!-- - Documented model updated every quarter -->
 
-## Riesgos / Dependencias
-<!-- CNI/red, storage, PKI, terceros, colas, etc. -->
+---
 
-## Notas de granularidad (cohesión/volatilidad)
-<!-- ¿Este RNF fuerza separar o mantener juntos sub-módulos? Reglas/umbrales -->
+## Measurement / Instrumentation
+- **How:** <!-- e.g., APM, OpenTelemetry metrics, synthetic checks, log analysis -->
+- **Where:** <!-- e.g., Grafana dashboard, Kibana panel, alert channel -->
+- **Frequency:** <!-- continuous / weekly / per deploy / quarterly review -->
+
+---
+
+## Reference Data / Load Hypotheses
+<!-- List the assumptions and estimated values used to size or evaluate the system. Examples: -->
+- Registered Users (UR): <!-- e.g., 4M -->
+- Daily Active Users (DAU): <!-- e.g., 10% (≈400k) -->
+- Peak Factor: <!-- e.g., 2.5× over average hour -->
+- Average Payload Size: <!-- e.g., ≤10 MB -->
+- Latency Target: <!-- e.g., p95 ≤ 2 s -->
+- Transactions or Transfers per Day: <!-- e.g., 12k/day -->
+- Other relevant assumptions: <!-- concurrency, storage growth, etc. -->
+
+---
+
+## Acceptance Criteria (Definition of Done)
+- [ ] SLI metrics defined and instrumented
+- [ ] Dashboard showing real-time SLI values
+- [ ] Alerts configured for SLO breaches
+- [ ] Documentation and runbook updated
+- [ ] Review meeting or quarterly validation completed
+- [ ] No compatibility or regression issues introduced
+
+---
+
+## Risks / Dependencies
+<!-- List potential risks or external dependencies that can affect this NFR. Examples: -->
+<!-- network limitations, third-party APIs, storage scaling, messaging systems, etc. -->
+
+---
+
+## Granularity Notes (Cohesion / Volatility)
+<!-- Indicate whether this NFR affects one or several microservices, -->
+<!-- and if differences in load, volatility, or SLA suggest splitting or merging components. -->
